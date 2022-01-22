@@ -1,0 +1,24 @@
+.form-container{
+  width: 400 px;
+  margin: 0 px auto;
+  margin-top: 200 px;
+  display: block;
+}
+
+.field{
+  display: inline-grid;
+  text-align: left;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.form-error {
+  color: red;
+  font-size: small;
+}
+
+.form-btn {
+  margin: 12px;
+  padding: 0.5em;
+}

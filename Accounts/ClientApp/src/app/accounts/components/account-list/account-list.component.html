@@ -1,0 +1,33 @@
+<mat-table class="accounts-table mat-elevation-z8" [dataSource]="dataSource"
+  matSort  matSortActive="accountNumber" matSortDirection="asc">
+
+  <ng-container matColumnDef="created">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Создан</mat-header-cell>
+      <mat-cell *matCellDef="let account">{{account.created | date: 'dd.MM.yyyy HH:mm'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="accountNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Номер</mat-header-cell>
+      <mat-cell *matCellDef="let account">{{account.accountNumber}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Статус</mat-header-cell>
+      <mat-cell *matCellDef="let account">{{accountStatuses[account.status]}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Сумма</mat-header-cell>
+    <mat-cell *matCellDef="let account">{{account.amount | currency}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="paymentMethod">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Способ оплаты</mat-header-cell>
+    <mat-cell *matCellDef="let account">{{paymentMethods[account.paymentMethod]}}</mat-cell>
+  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>

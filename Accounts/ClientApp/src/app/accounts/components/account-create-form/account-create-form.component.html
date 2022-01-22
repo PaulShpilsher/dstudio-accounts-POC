@@ -1,0 +1,54 @@
+<div>
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div>
+      <div class="field">
+        <label>Номер счета</label>
+        <input formControlName="accountNumber" type="text" inputmode="numeric" pattern="[0-9]*" digitsOnly required>
+        <div *ngIf="accountForm.controls.accountNumber.invalid && (accountForm.controls.accountNumber.dirty || accountForm.controls.accountNumber.touched)" class="form-error">
+          <span *ngIf="accountForm.controls.accountNumber.errors?.required">
+            <sup>*</sup>Веедите номер счета
+          </span>
+          <span *ngIf="accountForm.controls.accountNumber.errors?.pattern">
+            <sup>*</sup>Неверный формат.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="field">
+        <label>Сумма</label>
+        <input formControlName="amount" pattern="\d+([.]\d{0,2})?" required type="text">
+        <div *ngIf="accountForm.controls.amount.invalid && (accountForm.controls.amount.dirty || accountForm.controls.amount.touched)" class="form-error">
+          <span *ngIf="accountForm.controls.amount.errors?.required">
+            <sup>*</sup>Веедите сумму
+          </span>
+          <span *ngIf="accountForm.controls.amount.errors?.pattern">
+            <sup>*</sup>Неверный формат
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="field">
+        <label>Способ оплаты</label>
+        <select formControlName="paymentMethod">
+          <option *ngFor="let p of paymentMethods | keyvalue" [ngValue]="p.key">
+            {{p.value}}
+          </option>
+        </select>
+        <div *ngIf="accountForm.controls.paymentMethod.invalid && (accountForm.controls.paymentMethod.dirty || accountForm.controls.paymentMethod.touched)" class="form-error">
+          <span *ngIf="accountForm.controls.paymentMethod.errors?.required">
+            <sup>*</sup>Веедите способ оплаты
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-sm-inline-flex">
+      <button class="form-btn" (click)="onCancel()">Отменить</button>
+      <button class="form-btn" type="submit" [disabled]="!accountForm.valid">Создать</button>
+    </div>
+  </form>
+</div>
